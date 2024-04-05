@@ -13,7 +13,7 @@
 
 - name: Изменение hostname 
   command: hostnamectl set-hostname wrka-01-01.slepsov.corp
-  when: ip_address_output.stdout.split(' ')[0] == "10.0.117.109"
+  when: ip_address_output.stdout.split(' ')[0] == "10.0.117.119"
 
 - name: Обновление списка пакетов
   apt:
