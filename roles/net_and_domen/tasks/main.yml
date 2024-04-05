@@ -4,7 +4,7 @@
   register: ip_address_output
 
 - name: Настройка DNS
-  command: nmcli connection modify Wired\ connection\ 1 {{ dns }} ipv4.dns-search {{ domain_search }}
+  command: nmcli connection modify Wired\ connection\ 1 ipv4.dns {{ dns }} ipv4.dns-search {{ domain_search }}
 
 - name: Перезапуск NetworkManager
   service:
