@@ -12,7 +12,7 @@
     state: restarted
 
 - name: Изменение hostname 
-  command: hostnamectl set-hostname wrka-01-01.slepsov.corp
+  command: hostnamectl set-hostname wrka-01-01.{{ domain_search }}
   when: ip_address_output.stdout.split(' ')[0] == "10.0.117.119"
 
 - name: Обновление списка пакетов
@@ -25,7 +25,7 @@
     state: present
 
 - name: Присоединение к домену Active Directory 
-  command: astra-ad-sssd-client -d slepsov.corp -u admin -p P@ssw0rd -y
+  command: astra-ad-sssd-client -d {{ domain_name }} -u {{ domain_admin }} -p {{ domain_admin_password }} -y
 
 - name: Перезагрузка системы
   command: reboot

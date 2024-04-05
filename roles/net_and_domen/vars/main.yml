@@ -1,2 +1,7 @@
+###################
 dns: "10.0.117.110"
 domain_search: "slepsov.corp"
+domain_name: "slepsov.corp"
+domain_admin: "admin"
+domain_admin_password: "P@ssword"
+
