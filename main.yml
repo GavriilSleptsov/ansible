@@ -2,5 +2,10 @@
   hosts: localhost
   connection: local
   become: yes
-  roles:
-    - roles net_and_domen
+  tasks:
+    - name: Загрузка глобальных переменных из файла global_vars.yml
+      include_vars:
+        file: /roles/global_vars/global_vars.yml
+    - name: Применение сетевой роли
+      roles:
+        - roles/net_and_domen
