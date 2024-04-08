@@ -1,5 +1,5 @@
 ###################
-new_ip: "10.0.117.200"
+new_ip: "10.0.117.220"
 netmask: "24"
 gateway: "10.0.117.1"
 ipv4_method: "manual"
