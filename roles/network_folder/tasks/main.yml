@@ -1,34 +1,29 @@
----
-- name: Получение IP-адреса клиента
-  command: hostname -I
-  register: ip_address_output
-
-- name: Настройка DNS
-  command: nmcli connection modify Wired\ connection\ 1 ipv4.dns {{ dns }} ipv4.dns-search {{ domain_search }}
-
-- name: Перезапуск NetworkManager
-  service:
-    name: NetworkManager
-    state: restarted
-
-- name: Изменение hostname 
-  command: hostnamectl set-hostname wrka-01-01.slepsov.corp
-  when: ip_address_output.stdout.split(' ')[0] == "10.0.117.119"
-
-- name: Обновление списка пакетов
-  apt:
+- name: "Обновление списка пакетов"
+  apt: 
     update_cache: yes
 
-- name: Установка пакетов, необходимых для присоединения к домену
-  apt: 
-    name: astra-ad-sssd-client
-    state: present
+- name: Установка пакета autofs
+  apt:
+      name: autofs
+      state: present
+  
+- name: Настройка autofs /etc/auto.master
+  lineinfile:
+    path: /etc/auto.master
+    line: "/media/yakutia /etc/yakutia.cifs --ghost"
+    insertafter: EOF
 
-- name: Присоединение к домену Active Directory 
-  command: astra-ad-sssd-client -d slepsov.corp -u admin -p P@ssw0rd -y
+- name: Создание и редактирование /etc/yakutia.cifs
+  copy:
+    content: "{{ name_folder_for_connection }}  -fstype=cifs,multiuser,cruid=$UID,sec=krb5,file_mode=0777,dir_mode=0777,iocharset=utf8,domain=slepsov.corp ://ad-srv/{{ name_network_folder }}"
+    dest: /etc/yakutia.cifs
 
-- name: Перезагрузка системы
-  command: reboot
-  async: 1
-  poll: 0
-  ignore_errors: true
+- name: Создание папки /media/yakutia
+  file:
+    path: /media/yakutia
+    state: directory
+
+- name: Перезагрузка службы autofs
+  systemd:
+    name: autofs
+    state: restarted

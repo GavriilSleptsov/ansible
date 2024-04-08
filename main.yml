@@ -1,0 +1,6 @@
+- name: Применение роли net_and_domen
+  hosts: localhost
+  connection: local
+  become: yes
+  roles:
+    - roles net_and_domen

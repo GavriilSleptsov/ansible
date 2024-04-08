@@ -1,7 +1,10 @@
 ###################
+new_ip: "10.0.117.200"
+gateway: "10.0.117.1"
+ipv4.method: "manual"
 dns: "10.0.117.110"
 domain_search: "slepsov.corp"
 domain_name: "slepsov.corp"
 domain_admin: "admin"
-domain_admin_password: "P@ssword"
+domain_admin_password: "P@ssw0rd"
 

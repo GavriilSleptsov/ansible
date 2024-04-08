@@ -1,19 +1,18 @@
 ---
-- name: Получение IP-адреса клиента
-  command: hostname -I
-  register: ip_address_output
-
-- name: Настройка DNS
-  command: nmcli connection modify Wired\ connection\ 1 ipv4.dns {{ dns }} ipv4.dns-search {{ domain_search }}
+- name: Сетевая настройка
+  command: nmcli connection modify "Wired connection 1" ipv4.addresses {{ new_ip }} ipv4.gateway {{ gateway }} ipv4.method {{ ipv4_method }} ipv4.dns {{ dns }} ipv4.dns-search {{ domain_search }} 
 
 - name: Перезапуск NetworkManager
   service:
     name: NetworkManager
     state: restarted
 
+- name: Получение IP-адреса клиента
+  command: hostname -I
+  register: ip_address_output
+
 - name: Изменение hostname 
-  command: hostnamectl set-hostname wrka-01-01.{{ domain_search }}
-  when: ip_address_output.stdout.split(' ')[0] == "10.0.117.119"
+  command: hostnamectl set-hostname {{ new_hostname }}.{{ domain_search }}
 
 - name: Обновление списка пакетов
   apt:
