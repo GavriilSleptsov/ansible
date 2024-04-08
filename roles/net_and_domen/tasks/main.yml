@@ -22,8 +22,6 @@
 - name: Присоединение к домену Active Directory 
   command: astra-ad-sssd-client -d {{ domain_name }} -u {{ domain_admin }} -p {{ domain_admin_password }} -y
 
-- name: Перезагрузка системы
-  command: reboot
-  async: 1
-  poll: 0
-  ignore_errors: true
+- name: Успешный вход в домен {{ domain_name }}
+  debug:
+    msg: "Необходимо перезагрузить ПК!"
