@@ -1,6 +1,6 @@
 ---
 - name: Сетевая настройка
-  command: nmcli connection modify "Wired connection 1" connection.autoconnect yes ipv4.addresses {{ new_ip }}/{{ netmask }} ipv4.gateway {{ gateway }} ipv4.method {{ ipv4_method }} ipv4.dns {{ dns }} ipv4.dns-search {{ domain_search }} 
+  command: nmcli connection modify "Wired connection 1" connection.autoconnect yes ipv4.addresses {{ ip4 }}/{{ netmask }} ipv4.gateway {{ gateway }} ipv4.method {{ ipv4_method }} ipv4.dns {{ dns }} ipv4.dns-search {{ domain_search }} 
 
 - name: Изменение hostname 
   command: hostnamectl set-hostname {{ new_hostname }}.{{ domain_search }}
