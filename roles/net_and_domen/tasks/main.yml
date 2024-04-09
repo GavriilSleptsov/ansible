@@ -1,20 +1,25 @@
 ---
 - name: Сетевая настройка
   command: nmcli connection modify "Wired connection 1" connection.autoconnect yes ipv4.addresses {{ ip4 }}/{{ netmask }} ipv4.gateway {{ gateway }} ipv4.method {{ ipv4_method }} ipv4.dns {{ dns }} ipv4.dns-search {{ domain_search }} 
+  when: change_network
 
 - name: Изменение hostname 
   command: hostnamectl set-hostname {{ new_hostname }}.{{ domain_search }}
+  when: change_hostname
 
 - name: Перезапуск NetworkManager
   service:
     name: NetworkManager
     state: restarted
+  when: change_network
 
 - name: Отключение сетевого интерфейса
   command: nmcli connection down "Wired connection 1"
+  when: change_network
 
 - name: Включение сетевого интерфейса
   command: nmcli connection up "Wired connection 1"
+  when: change_network
 
 - name: Включение стандартных репозиториев Astra Linux
   copy:
@@ -24,20 +29,26 @@
       deb https://download.astralinux.ru/astra/stable/1.7_x86-64/repository-base/ 1.7_x86-64 main contrib non-free
       deb https://download.astralinux.ru/astra/stable/1.7_x86-64/repository-extended/ 1.7_x86-64 main contrib non-free
     dest: /etc/apt/sources.list
-  when: need_repositories
+  when: change_repositories
 
 - name: Обновление списка пакетов
   apt:
     update_cache: yes
+  when: change_repositories
 
 - name: Установка пакетов, необходимых для присоединения к домену
   apt: 
     name: astra-ad-sssd-client
     state: present
+  when: change_domain
 
 - name: Присоединение к домену Active Directory 
   command: astra-ad-sssd-client -d {{ domain_name }} -u {{ domain_admin }} -p {{ domain_admin_password }} -y
+  register: domain_join_result
+  changed_when: domain_join_result.stdout.find(" Компьютер подключен к домену {{ domain_name }} ") != -1
+  when: change_domain
 
 - name: Успешный вход в домен {{ domain_name }}
   debug:
     msg: "Необходимо перезагрузить ПК!"
+  when: domain_join_result.changed
