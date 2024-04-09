@@ -24,6 +24,7 @@
       deb https://download.astralinux.ru/astra/stable/1.7_x86-64/repository-base/ 1.7_x86-64 main contrib non-free
       deb https://download.astralinux.ru/astra/stable/1.7_x86-64/repository-extended/ 1.7_x86-64 main contrib non-free
     dest: /etc/apt/sources.list
+  when: need_repositories
 
 - name: Обновление списка пакетов
   apt:
