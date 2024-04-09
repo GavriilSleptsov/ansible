@@ -4,7 +4,7 @@
   become: yes
   tasks:
     - name: Загрузка глобальных переменных из файла global_vars.yml
-      include: /roles/global_vars/global_vars.yml
+      include_vars: /roles/global_vars/global_vars.yml
     - name: Применение сетевой роли
       roles:
         - roles/net_and_domen
