@@ -29,12 +29,19 @@
       deb https://download.astralinux.ru/astra/stable/1.7_x86-64/repository-base/ 1.7_x86-64 main contrib non-free
       deb https://download.astralinux.ru/astra/stable/1.7_x86-64/repository-extended/ 1.7_x86-64 main contrib non-free
     dest: /etc/apt/sources.list
-  when: change_repositories
+  when: change_stable_repositories
+
+- name: Включение frozen репозиториев Astra Linux 1.7.5
+  copy:
+    content: |
+      deb https://dl.astralinux.ru/astra/frozen/1.7_x86-64/1.7.5/repository-base/ 1.7_x86-64 main contrib non-free
+      deb https://dl.astralinux.ru/astra/frozen/1.7_x86-64/1.7.5/repository-extended/ 1.7_x86-64 main contrib non-free 
+  when: change_frozen_repositories
 
 - name: Обновление списка пакетов
   apt:
     update_cache: yes
-  when: change_repositories
+  when: change_stable_repositories or change_frozen_repositories
 
 - name: Установка пакетов, необходимых для присоединения к домену
   apt: 
@@ -42,10 +49,9 @@
     state: present
   when: change_domain
 
-- name: Присоединение к домену Active Directory 
+- name: Присоединение к домену {{ domain_name }} 
   command: astra-ad-sssd-client -d {{ domain_name }} -u {{ domain_admin }} -p {{ domain_admin_password }} -y
   register: domain_join_result
-  changed_when: domain_join_result.stdout.find(" Компьютер подключен к домену {{ domain_name }} ") != -1
   when: change_domain
 
 - name: Успешный вход в домен {{ domain_name }}
