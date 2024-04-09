@@ -55,7 +55,7 @@
   register: domain_join_result
   when: change_domain
 
-- name: Успешный вход в домен {{ domain_name }}
+- name: Успешное присоединение в домен {{ domain_name }}
   debug:
     msg: "Необходимо перезагрузить ПК!"
   when: domain_join_result.changed
