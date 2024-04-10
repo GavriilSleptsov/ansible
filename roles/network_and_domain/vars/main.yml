@@ -2,7 +2,6 @@
 ip4: "10.0.117.220"
 netmask: "24"
 gateway: "10.0.117.1"
-ipv4_method: "manual"
 dns: "10.0.117.110"
 domain_search: "slepsov.corp"
 domain_admin: "admin"
