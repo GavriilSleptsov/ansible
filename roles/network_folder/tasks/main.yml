@@ -12,9 +12,12 @@
 
 - name: Создание и редактирование /etc/yakutia.cifs
   copy:
-    content: | 
-      {{ name_folder_for_connection }} -fstype=cifs,multiuser,cruid=$UID,sec=krb5,file_mode=0777,dir_mode=0777,iocharset=utf8,domain={{ domain_name }},nofail ://{{ server_hostname_network_folder }}/{{ name_network_folder }}
+    content: "{{ item }}"
     dest: /etc/yakutia.cifs
+  loop:
+    - "{{ name_network_folder_1 }} -fstype=cifs,multiuser,cruid=$UID,sec=krb5,file_mode=0777,dir_mode=0777,iocharset=utf8,domain={{ domain_name }},nofail ://{{ server_hostname_network_folder }}/{{ name_network_folder_1 }}"
+    - "{{ name_network_folder_2 }} -fstype=cifs,multiuser,cruid=$UID,sec=krb5,file_mode=0777,dir_mode=0777,iocharset=utf8,domain={{ domain_name }},nofail ://{{ server_hostname_network_folder }}/{{ name_network_folder_2 }}"
+
 
 - name: Создание папки /media/yakutia
   file:
