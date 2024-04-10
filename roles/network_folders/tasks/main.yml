@@ -28,3 +28,9 @@
   systemd:
     name: autofs
     state: restarted
+
+- name: Изменение проверочного переменного
+  ansible.builtin.lineinfile:
+    path: "global_vars/global_vars.yml"
+    regexp: '^roles_network_folders: false'
+    line: 'roles_network_folders: true'
