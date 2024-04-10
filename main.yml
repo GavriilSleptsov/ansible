@@ -1,4 +1,4 @@
-- name: Применение роли net_and_domen
+- name: Запуск ansible-playbook
   hosts: localhost
   connection: local
   become: yes

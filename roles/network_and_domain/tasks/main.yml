@@ -62,6 +62,6 @@
 
 - name: Изменение проверочного переменного
   ansible.builtin.lineinfile:
-    path: "../global_vars/global_vars.yml"
+    path: "global_vars/global_vars.yml"
     regexp: '^roles_network_and_domain: false'
     line: 'roles_network_and_domain: true'
