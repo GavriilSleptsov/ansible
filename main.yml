@@ -4,6 +4,8 @@
   become: yes
   vars_files:
     - "global_vars/global_vars.yml"
-  roles:
-    - roles/network_and_domain
-  when: "{{ roles_network_and_domain }} == false"
+  tasks:
+    - name: Применение роли network_and_domain
+      include_role:
+        name: roles/network_and_domain
+      when: roles_network_and_domain == false
