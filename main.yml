@@ -1,4 +1,4 @@
-- name: Запуск ansible-playbook
+- name: Запуск ansible-playbook'a
   hosts: localhost
   connection: local
   become: yes
