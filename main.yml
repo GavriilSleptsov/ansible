@@ -5,4 +5,5 @@
   vars_files:
     - "global_vars/global_vars.yml"
   roles:
-    - roles/net_and_domen
+    - roles/network_and_domain
+  when: "{{ roles_network_and_domain }} == false"

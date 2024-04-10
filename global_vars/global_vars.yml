@@ -1,2 +1,8 @@
+##### ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ #####
 domain_name: "slepsov.corp"
+
+
+##### ПРОВЕРОЧНЫЕ ПЕРЕМЕННЫЕ #####
+roles_network_and_domain: false
+
 
