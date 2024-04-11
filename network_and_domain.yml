@@ -1,0 +1,10 @@
+- name: Запуск ansible-playbook'a
+  hosts: localhost
+  connection: local
+  become: yes
+  vars_files:
+    - "global_vars/global_vars.yml"
+  tasks:
+    - name: Применение роли "Сетевая настройки и присоединение к домену"
+      include_role:
+        name: roles/network_and_domain
