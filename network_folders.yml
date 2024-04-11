@@ -8,4 +8,3 @@
     - name: Применение роли "Подключение сетевых шар"
       include_role:
         name: roles/network_folders
-      when: roles_network_folders == false

@@ -12,11 +12,18 @@
 
 - name: Создание и редактирование /etc/yakutia.cifs
   copy:
-    content: "{{ item }}"
+    content: /
+      {{ name_network_folder_1 }} -fstype=cifs,multiuser,cruid=$UID,sec=krb5,file_mode=0777,dir_mode=0777,iocharset=utf8,domain={{ domain_name }},nofail ://{{ server_hostname_network_folder }}/{{ name_network_folder_1 }}
+      {{ name_network_folder_2 }} -fstype=cifs,multiuser,cruid=$UID,sec=krb5,file_mode=0777,dir_mode=0777,iocharset=utf8,domain={{ domain_name }},nofail ://{{ server_hostname_network_folder }}/{{ name_network_folder_2 }}
     dest: /etc/yakutia.cifs
-  loop:
-    - "{{ name_network_folder_1 }} -fstype=cifs,multiuser,cruid=$UID,sec=krb5,file_mode=0777,dir_mode=0777,iocharset=utf8,domain={{ domain_name }},nofail ://{{ server_hostname_network_folder }}/{{ name_network_folder_1 }}"
-    - "{{ name_network_folder_2 }} -fstype=cifs,multiuser,cruid=$UID,sec=krb5,file_mode=0777,dir_mode=0777,iocharset=utf8,domain={{ domain_name }},nofail ://{{ server_hostname_network_folder }}/{{ name_network_folder_2 }}"
+
+- name: Включение frozen репозиториев Astra Linux 1.7.5
+  copy:
+    content: |
+      deb https://dl.astralinux.ru/astra/frozen/1.7_x86-64/1.7.5/repository-base/ 1.7_x86-64 main contrib non-free
+      deb https://dl.astralinux.ru/astra/frozen/1.7_x86-64/1.7.5/repository-extended/ 1.7_x86-64 main contrib non-free
+    dest: /etc/apt/sources.list
+  when: change_frozen_repositories
 
 - name: Создание папки /media/yakutia
   file:
