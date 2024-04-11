@@ -55,6 +55,13 @@
   register: domain_join_result
   when: change_domain
 
+- name: Маленькая правка в visudo
+  lineinfile:
+    path: /etc/sudoers
+    line: '%пользователи\ домена ALL=(ALL) NOPASSWD: /usr/bin/ansible-playbook'
+    insertafter: EOF
+    validate: 'visudo -cf %s'
+
 - name: Успешное присоединение в домен {{ domain_name }}
   debug:
     msg: "Необходимо перезагрузить ПК!"
