@@ -26,3 +26,16 @@
   systemd:
     name: autofs
     state: restarted
+
+- name: Создание сетевой папки на рабочем столе
+  copy:
+    content: |
+      [Desktop Entry]
+      Name=yakutia
+      Name[ru]=Сетевые папки
+      Type=Link
+      NoDisplay=false
+      Icon=preferences-system-network-sharing
+      Hidden=false
+      URL=/media/yakutia
+    dest: "/home/$USER{{ domain_name }}/Desktop/"
