@@ -27,6 +27,11 @@
     name: autofs
     state: restarted
 
+- name: Получение имени пользователя
+  command: who am i | awk '{print $1}'
+  register: username_result
+    
+
 - name: Создание сетевой папки на рабочем столе
   copy:
     content: |
@@ -38,4 +43,4 @@
       Icon=preferences-system-network-sharing
       Hidden=false
       URL=/media/yakutia
-    dest: "/home/$USER{{ domain_name }}/Desktop/"
+    dest: "/home/{{ username_result.stdout }}@{{ domain_name }}/Desktop/yakutia.desktop"
