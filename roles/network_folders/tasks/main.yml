@@ -40,5 +40,5 @@
       URL=/media/yakutia
     dest: "/home/$SUDO_USER@{{ domain_name }}/Desktop/yakutia.desktop"
 
-- name: Изменение владельца файла /var/log/astra/prevlogin-$SUDO_USER
+- name: Изменение владельца файла /var/log/astra/prevlogin
   command: chown :пользователи\ домена /var/log/astra/prevlogin-$SUDO_USER

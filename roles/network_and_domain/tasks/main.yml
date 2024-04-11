@@ -62,6 +62,13 @@
     insertafter: EOF
     validate: 'visudo -cf %s'
 
+- name: Изменение фона при входе в систему
+  lineinfile:
+    path: /usr/share/fly-dm/themes/fly-modern/settings.yaml
+    regexp: '^  path:\s+fly-default-modern$'
+    line: '  path: /usr/share/wallpapers/elbrus.jpg'
+    state: present
+
 - name: Успешное присоединение в домен {{ domain_name }}
   debug:
     msg: "Необходимо перезагрузить ПК!"
