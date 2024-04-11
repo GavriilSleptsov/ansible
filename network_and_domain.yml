@@ -5,6 +5,6 @@
   vars_files:
     - "global_vars/global_vars.yml"
   tasks:
-    - name: Применение роли "Сетевая настройки и присоединение к домену"
+    - name: Применение роли "Сетевая настройка и присоединение к домену"
       include_role:
         name: roles/network_and_domain
