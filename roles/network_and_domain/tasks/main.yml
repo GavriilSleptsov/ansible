@@ -86,6 +86,13 @@
     line: 'WallPaper=/opt/aitekinfo/wallpapers/wallpaper1.jpg'
     state: present
 
+- name: Удаление логотипа Астры
+  lineinfile:
+    path: /usr/share/fly-wm/theme/default.themerc
+    regexp: 'LogoPixmap=/usr/share/wallpapers/logo/astra_logo'
+    line: 'LogoPixmap='
+    state: present
+
 - name: Успешное присоединение в домен {{ domain_name }}
   debug:
     msg: "Необходимо перезагрузить ПК!"
