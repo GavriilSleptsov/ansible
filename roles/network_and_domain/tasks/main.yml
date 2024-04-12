@@ -90,8 +90,21 @@
   lineinfile:
     path: /usr/share/fly-wm/theme/default.themerc
     regexp: 'LogoPixmap=/usr/share/wallpapers/logo/astra_logo'
-    line: 'LogoPixmap='
+    line: 'LogoPixmap=""'
     state: present
+
+- name: Создание ярлыка (Мой Компьютер)
+  copy:
+    content: |
+      [Desktop Entry]
+      Type=Link
+      Name=My Computer
+      Name[ru]=Мой компьютер
+      URL=fly-fm:Computer
+      Icon=computer
+      OnlyShowIn=FLY;
+      X-FLY-IconContext=Devices
+    dest: "/etc/skel/Desktop/mycomp.desktop"
 
 - name: Успешное присоединение в домен {{ domain_name }}
   debug:
