@@ -69,6 +69,23 @@
     line: '  path: /usr/share/wallpapers/elbrus.jpg'
     state: present
 
+- name: Создание каталога /opt/aitekinfo
+  file:
+    path: /opt/aitekinfo/wallpapers
+    state: directory
+
+- name: Скачивание обоев для рабочего стола
+  get_url:
+    url: https://slepsov.ru/aitekinfo/wallpapers/wallpaper1.jpg
+    dest: /opt/aitekinfo/wallpapers/wallpaper1.jpg
+
+- name: Изменение обоев рабочего стола
+  lineinfile:
+    path: /usr/share/fly-wm/theme/default.themerc
+    regexp: 'WallPaper=fly-default'
+    line: 'WallPaper=/opt/aitekinfo/wallpapers/wallpaper1.jpg'
+    state: present
+
 - name: Успешное присоединение в домен {{ domain_name }}
   debug:
     msg: "Необходимо перезагрузить ПК!"
