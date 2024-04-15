@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(1061, 600)
+        MainWindow.resize(1059, 597)
         MainWindow.setCursor(QtGui.QCursor(QtCore.Qt.IBeamCursor))
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap("logo_window_icon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
@@ -30,13 +30,37 @@ class Ui_MainWindow(object):
         self.MainBackground.setText("")
         self.MainBackground.setObjectName("MainBackground")
         self.OpacityBackground = QtWidgets.QLabel(self.centralwidget)
-        self.OpacityBackground.setGeometry(QtCore.QRect(10, 10, 1041, 581))
+        self.OpacityBackground.setGeometry(QtCore.QRect(350, 10, 701, 581))
         self.OpacityBackground.setStyleSheet("QLabel#OpacityBackground {\n"
 "    background: rgba(255,255,255,0.35);\n"
 "    border-radius: 20px;\n"
 "};")
         self.OpacityBackground.setText("")
         self.OpacityBackground.setObjectName("OpacityBackground")
+        self.OpacityBackground_2 = QtWidgets.QLabel(self.centralwidget)
+        self.OpacityBackground_2.setGeometry(QtCore.QRect(10, 10, 331, 581))
+        self.OpacityBackground_2.setStyleSheet("QLabel#OpacityBackground_2 {\n"
+"    background: rgba(255,255,255,0.35);\n"
+"    border-radius: 20px;\n"
+"};")
+        self.OpacityBackground_2.setText("")
+        self.OpacityBackground_2.setObjectName("OpacityBackground_2")
+        self.pushButton = QtWidgets.QPushButton(self.centralwidget)
+        self.pushButton.setGeometry(QtCore.QRect(20, 280, 311, 41))
+        self.pushButton.setObjectName("pushButton")
+        self.groupBox = QtWidgets.QGroupBox(self.centralwidget)
+        self.groupBox.setGeometry(QtCore.QRect(360, 20, 681, 561))
+        self.groupBox.setTitle("")
+        self.groupBox.setObjectName("groupBox")
+        self.label = QtWidgets.QLabel(self.groupBox)
+        self.label.setGeometry(QtCore.QRect(0, 110, 241, 251))
+        self.label.setStyleSheet("background: rgb(255,255,255)")
+        self.label.setObjectName("label")
+        self.MainBackground.raise_()
+        self.OpacityBackground_2.raise_()
+        self.OpacityBackground.raise_()
+        self.pushButton.raise_()
+        self.groupBox.raise_()
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
@@ -45,6 +69,9 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "АйтекИнфо"))
+        self.pushButton.setText(_translate("MainWindow", "PushButton"))
+        self.label.setText(_translate("MainWindow", "ТЕСТОВАЯ"))
+import test_rc
 
 
 if __name__ == "__main__":
