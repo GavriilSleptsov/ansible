@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1059</width>
+    <width>1069</width>
     <height>597</height>
    </rect>
   </property>
@@ -47,7 +47,7 @@
      <rect>
       <x>350</x>
       <y>10</y>
-      <width>701</width>
+      <width>711</width>
       <height>581</height>
      </rect>
     </property>
@@ -80,11 +80,11 @@
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="AnsiblePlaybook_Button">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>190</y>
+      <x>20</x>
+      <y>520</y>
       <width>311</width>
       <height>41</height>
      </rect>
@@ -93,23 +93,27 @@
      <string>PushButton</string>
     </property>
    </widget>
-   <widget class="QScrollArea" name="scrollArea">
+   <widget class="QScrollArea" name="AnsiblePlaybook_Area">
     <property name="geometry">
      <rect>
       <x>350</x>
       <y>10</y>
-      <width>701</width>
+      <width>711</width>
       <height>581</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(0, 0, 0);</string>
+     <string notr="true">background: transparent;
+border: none;</string>
     </property>
     <property name="verticalScrollBarPolicy">
-     <enum>Qt::ScrollBarAlwaysOn</enum>
+     <enum>Qt::ScrollBarAsNeeded</enum>
     </property>
     <property name="horizontalScrollBarPolicy">
-     <enum>Qt::ScrollBarAlwaysOn</enum>
+     <enum>Qt::ScrollBarAlwaysOff</enum>
+    </property>
+    <property name="sizeAdjustPolicy">
+     <enum>QAbstractScrollArea::AdjustIgnored</enum>
     </property>
     <property name="widgetResizable">
      <bool>true</bool>
@@ -119,21 +123,37 @@
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>1218</width>
-       <height>618</height>
+       <width>694</width>
+       <height>1000</height>
       </rect>
      </property>
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>1000</height>
+      </size>
+     </property>
      <layout class="QVBoxLayout" name="verticalLayout">
+      <property name="spacing">
+       <number>6</number>
+      </property>
+      <property name="leftMargin">
+       <number>6</number>
+      </property>
+      <property name="topMargin">
+       <number>6</number>
+      </property>
+      <property name="rightMargin">
+       <number>6</number>
+      </property>
+      <property name="bottomMargin">
+       <number>6</number>
+      </property>
       <item>
-       <widget class="QFrame" name="frame">
-        <property name="minimumSize">
-         <size>
-          <width>1200</width>
-          <height>600</height>
-         </size>
-        </property>
+       <widget class="QFrame" name="frame_3">
         <property name="styleSheet">
-         <string notr="true">background-color: rgb(170, 255, 0);</string>
+         <string notr="true">background: rgba(255,255,255,0.35);
+border-radius: 20px;</string>
         </property>
         <property name="frameShape">
          <enum>QFrame::StyledPanel</enum>
@@ -141,22 +161,34 @@
         <property name="frameShadow">
          <enum>QFrame::Raised</enum>
         </property>
-        <widget class="QLabel" name="label">
-         <property name="geometry">
-          <rect>
-           <x>30</x>
-           <y>30</y>
-           <width>421</width>
-           <height>451</height>
-          </rect>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">background-color: rgb(255, 255, 0);</string>
-         </property>
-         <property name="text">
-          <string>TextLabel</string>
-         </property>
-        </widget>
+       </widget>
+      </item>
+      <item>
+       <widget class="QFrame" name="frame_2">
+        <property name="styleSheet">
+         <string notr="true">background: rgba(255,255,255,0.35);
+border-radius: 20px;</string>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QFrame" name="frame">
+        <property name="styleSheet">
+         <string notr="true">background: rgba(255,255,255,0.35);
+border-radius: 20px;</string>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
        </widget>
       </item>
      </layout>
@@ -165,8 +197,8 @@
    <zorder>MainBackground</zorder>
    <zorder>OpacityBackground_2</zorder>
    <zorder>OpacityBackground</zorder>
-   <zorder>pushButton</zorder>
-   <zorder>scrollArea</zorder>
+   <zorder>AnsiblePlaybook_Button</zorder>
+   <zorder>AnsiblePlaybook_Area</zorder>
   </widget>
  </widget>
  <resources>
