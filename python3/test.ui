@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1069</width>
-    <height>597</height>
+    <width>1012</width>
+    <height>599</height>
    </rect>
   </property>
   <property name="cursor">
@@ -20,9 +20,20 @@
    <iconset>
     <normaloff>logo_window_icon.png</normaloff>logo_window_icon.png</iconset>
   </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
   <widget class="QWidget" name="centralwidget">
+   <property name="font">
+    <font>
+     <family>Nirmala UI Semilight</family>
+    </font>
+   </property>
    <property name="cursor">
     <cursorShape>ArrowCursor</cursorShape>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
    </property>
    <widget class="QLabel" name="MainBackground">
     <property name="geometry">
@@ -36,25 +47,6 @@
     <property name="styleSheet">
      <string notr="true">QLabel#MainBackground {
 	background: qlineargradient(spread:reflect, x1:0, y1:1, x2:0, y2:0, stop:0 rgba(94, 2, 1, 255), stop:0.85 rgba(6, 0, 156, 255))
-};</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QLabel" name="OpacityBackground">
-    <property name="geometry">
-     <rect>
-      <x>350</x>
-      <y>10</y>
-      <width>711</width>
-      <height>581</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QLabel#OpacityBackground {
-	background: rgba(255,255,255,0.35);
-	border-radius: 20px;
 };</string>
     </property>
     <property name="text">
@@ -84,27 +76,56 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>520</y>
+      <y>110</y>
       <width>311</width>
-      <height>41</height>
+      <height>61</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <family>Yu Gothic UI</family>
+      <pointsize>15</pointsize>
+      <weight>50</weight>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton#AnsiblePlaybook_Button {
+    border: 2px solid #333; /* Цвет рамки */
+    border-radius: 5px; /* Скругление углов */
+    padding: 5px 10px; /* Внутренний отступ */
+    background-color: #fff; /* Цвет фона */
+}
+
+QPushButton#AnsiblePlaybook_Button:hover {
+    background-color: #444; /* Цвет фона при наведении */
+    color: #fff; /* Цвет текста при наведении */
+}
+
+QPushButton#AnsiblePlaybook_Button:pressed {
+ background-color: #666; /* Цвет фона при нажатии */
+    color: #fff; /* Цвет текста при нажатии */
+}</string>
+    </property>
     <property name="text">
-     <string>PushButton</string>
+     <string>Ansible Playbook'и</string>
+    </property>
+    <property name="autoDefault">
+     <bool>false</bool>
     </property>
    </widget>
-   <widget class="QScrollArea" name="AnsiblePlaybook_Area">
+   <widget class="QScrollArea" name="AnsibleScroll_Area">
     <property name="geometry">
      <rect>
       <x>350</x>
       <y>10</y>
-      <width>711</width>
+      <width>651</width>
       <height>581</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background: transparent;
-border: none;</string>
+     <string notr="true">border-radius: 20px;
+background: rgba(0,0,0,0.2);</string>
     </property>
     <property name="verticalScrollBarPolicy">
      <enum>Qt::ScrollBarAsNeeded</enum>
@@ -118,12 +139,12 @@ border: none;</string>
     <property name="widgetResizable">
      <bool>true</bool>
     </property>
-    <widget class="QWidget" name="scrollAreaWidgetContents">
+    <widget class="QWidget" name="AnsibleContent">
      <property name="geometry">
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>694</width>
+       <width>634</width>
        <height>1000</height>
       </rect>
      </property>
@@ -132,6 +153,14 @@ border: none;</string>
        <width>0</width>
        <height>1000</height>
       </size>
+     </property>
+     <property name="font">
+      <font>
+       <family>Niagara Engraved</family>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout">
       <property name="spacing">
@@ -150,10 +179,17 @@ border: none;</string>
        <number>6</number>
       </property>
       <item>
-       <widget class="QFrame" name="frame_3">
+       <widget class="QFrame" name="Ansible_network_and_domain">
+        <property name="font">
+         <font>
+          <family>MV Boli</family>
+         </font>
+        </property>
         <property name="styleSheet">
-         <string notr="true">background: rgba(255,255,255,0.35);
-border-radius: 20px;</string>
+         <string notr="true">QFrame#Ansible_network_and_domain {
+	background: rgba(255,255,255,0.2);
+	border-radius: 20px;
+}</string>
         </property>
         <property name="frameShape">
          <enum>QFrame::StyledPanel</enum>
@@ -161,10 +197,253 @@ border-radius: 20px;</string>
         <property name="frameShadow">
          <enum>QFrame::Raised</enum>
         </property>
+        <widget class="QFrame" name="network_and_domain_frame">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>10</y>
+           <width>311</width>
+           <height>301</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QFrame#network_and_domain_frame {
+	background: rgba(255,255,255,1);
+}
+
+
+QFrame &gt; QLineEdit {
+    border: 1px solid #333;
+    background-color: #fff;
+}
+</string>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <widget class="QLineEdit" name="IP">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>40</y>
+            <width>291</width>
+            <height>25</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>Yu Gothic UI</family>
+            <pointsize>13</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="placeholderText">
+           <string>IP-адрес</string>
+          </property>
+          <property name="clearButtonEnabled">
+           <bool>true</bool>
+          </property>
+         </widget>
+         <widget class="QLineEdit" name="Netmask">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>70</y>
+            <width>291</width>
+            <height>25</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>Yu Gothic UI</family>
+            <pointsize>13</pointsize>
+           </font>
+          </property>
+          <property name="placeholderText">
+           <string>Маска подсети (в виде 24)</string>
+          </property>
+          <property name="clearButtonEnabled">
+           <bool>true</bool>
+          </property>
+         </widget>
+         <widget class="QLineEdit" name="Gateway">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>100</y>
+            <width>291</width>
+            <height>25</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>Yu Gothic UI</family>
+            <pointsize>13</pointsize>
+           </font>
+          </property>
+          <property name="placeholderText">
+           <string>Шлюз</string>
+          </property>
+          <property name="clearButtonEnabled">
+           <bool>true</bool>
+          </property>
+         </widget>
+         <widget class="QLineEdit" name="DNS">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>130</y>
+            <width>291</width>
+            <height>25</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>Yu Gothic UI</family>
+            <pointsize>13</pointsize>
+           </font>
+          </property>
+          <property name="placeholderText">
+           <string>IP-адрес DNS</string>
+          </property>
+          <property name="clearButtonEnabled">
+           <bool>true</bool>
+          </property>
+         </widget>
+         <widget class="QLineEdit" name="SearchDomain">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>160</y>
+            <width>291</width>
+            <height>25</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>Yu Gothic UI</family>
+            <pointsize>13</pointsize>
+           </font>
+          </property>
+          <property name="placeholderText">
+           <string>Поисковый домен</string>
+          </property>
+          <property name="clearButtonEnabled">
+           <bool>true</bool>
+          </property>
+         </widget>
+         <widget class="QLineEdit" name="Hostname">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>190</y>
+            <width>291</width>
+            <height>25</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>Yu Gothic UI</family>
+            <pointsize>13</pointsize>
+           </font>
+          </property>
+          <property name="placeholderText">
+           <string>Новый hostname для хоста</string>
+          </property>
+          <property name="clearButtonEnabled">
+           <bool>true</bool>
+          </property>
+         </widget>
+         <widget class="QLineEdit" name="LoginAdmin">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>220</y>
+            <width>291</width>
+            <height>25</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>Yu Gothic UI</family>
+            <pointsize>13</pointsize>
+           </font>
+          </property>
+          <property name="placeholderText">
+           <string>Логин доменного админа</string>
+          </property>
+          <property name="clearButtonEnabled">
+           <bool>true</bool>
+          </property>
+         </widget>
+         <widget class="QLineEdit" name="PasswordAdmin">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>250</y>
+            <width>291</width>
+            <height>25</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>Yu Gothic UI</family>
+            <pointsize>13</pointsize>
+           </font>
+          </property>
+          <property name="echoMode">
+           <enum>QLineEdit::Normal</enum>
+          </property>
+          <property name="placeholderText">
+           <string>Пароль доменного админа</string>
+          </property>
+          <property name="clearButtonEnabled">
+           <bool>true</bool>
+          </property>
+         </widget>
+         <widget class="QLabel" name="network_and_domain_frame_title">
+          <property name="geometry">
+           <rect>
+            <x>60</x>
+            <y>5</y>
+            <width>181</width>
+            <height>31</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>Yu Gothic UI</family>
+            <pointsize>14</pointsize>
+            <weight>75</weight>
+            <italic>false</italic>
+            <bold>true</bold>
+            <underline>false</underline>
+            <strikeout>false</strikeout>
+            <kerning>false</kerning>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QLabel#network_and_domain_frame_title {
+	background: transparent;
+}</string>
+          </property>
+          <property name="text">
+           <string>Введите данные</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </widget>
        </widget>
       </item>
       <item>
-       <widget class="QFrame" name="frame_2">
+       <widget class="QFrame" name="Ansible_network_folders">
         <property name="styleSheet">
          <string notr="true">background: rgba(255,255,255,0.35);
 border-radius: 20px;</string>
@@ -194,15 +473,12 @@ border-radius: 20px;</string>
      </layout>
     </widget>
    </widget>
-   <zorder>MainBackground</zorder>
-   <zorder>OpacityBackground_2</zorder>
-   <zorder>OpacityBackground</zorder>
-   <zorder>AnsiblePlaybook_Button</zorder>
-   <zorder>AnsiblePlaybook_Area</zorder>
   </widget>
  </widget>
- <resources>
-  <include location="test.qrc"/>
- </resources>
+ <tabstops>
+  <tabstop>AnsiblePlaybook_Button</tabstop>
+  <tabstop>AnsibleScroll_Area</tabstop>
+ </tabstops>
+ <resources/>
  <connections/>
 </ui>
