@@ -14,3 +14,5 @@ change_frozen_repositories: false
 change_network: true
 change_hostname: true
 change_domain: true
+change_wallpaper_background: true
+change_wallpaper: true

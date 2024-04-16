@@ -83,8 +83,8 @@
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>280</y>
+      <x>30</x>
+      <y>190</y>
       <width>311</width>
       <height>41</height>
      </rect>
@@ -93,7 +93,7 @@
      <string>PushButton</string>
     </property>
    </widget>
-   <widget class="QGroupBox" name="groupBox">
+   <widget class="QScrollArea" name="scrollArea">
     <property name="geometry">
      <rect>
       <x>360</x>
@@ -102,23 +102,26 @@
       <height>561</height>
      </rect>
     </property>
-    <property name="title">
-     <string/>
+    <property name="toolTipDuration">
+     <number>-1</number>
     </property>
-    <widget class="QLabel" name="label">
+    <property name="frameShape">
+     <enum>QFrame::NoFrame</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Plain</enum>
+    </property>
+    <property name="widgetResizable">
+     <bool>true</bool>
+    </property>
+    <widget class="QWidget" name="scrollAreaWidgetContents">
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>110</y>
-       <width>241</width>
-       <height>251</height>
+       <y>0</y>
+       <width>681</width>
+       <height>561</height>
       </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">background: rgb(255,255,255)</string>
-     </property>
-     <property name="text">
-      <string>ТЕСТОВАЯ</string>
      </property>
     </widget>
    </widget>
@@ -126,7 +129,7 @@
    <zorder>OpacityBackground_2</zorder>
    <zorder>OpacityBackground</zorder>
    <zorder>pushButton</zorder>
-   <zorder>groupBox</zorder>
+   <zorder>scrollArea</zorder>
   </widget>
  </widget>
  <resources>

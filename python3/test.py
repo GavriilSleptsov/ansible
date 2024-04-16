@@ -71,7 +71,7 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(_translate("MainWindow", "АйтекИнфо"))
         self.pushButton.setText(_translate("MainWindow", "PushButton"))
         self.label.setText(_translate("MainWindow", "ТЕСТОВАЯ"))
-import test_rc
+
 
 
 if __name__ == "__main__":
