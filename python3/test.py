@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'test.ui'
+# Form implementation generated from reading ui file '.\test.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.10
 #
@@ -17,7 +17,7 @@ class Ui_MainWindow(object):
         MainWindow.resize(1059, 597)
         MainWindow.setCursor(QtGui.QCursor(QtCore.Qt.IBeamCursor))
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("logo_window_icon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap(".\\logo_window_icon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         MainWindow.setWindowIcon(icon)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setCursor(QtGui.QCursor(QtCore.Qt.ArrowCursor))
@@ -46,21 +46,37 @@ class Ui_MainWindow(object):
         self.OpacityBackground_2.setText("")
         self.OpacityBackground_2.setObjectName("OpacityBackground_2")
         self.pushButton = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton.setGeometry(QtCore.QRect(20, 280, 311, 41))
+        self.pushButton.setGeometry(QtCore.QRect(30, 190, 311, 41))
         self.pushButton.setObjectName("pushButton")
-        self.groupBox = QtWidgets.QGroupBox(self.centralwidget)
-        self.groupBox.setGeometry(QtCore.QRect(360, 20, 681, 561))
-        self.groupBox.setTitle("")
-        self.groupBox.setObjectName("groupBox")
-        self.label = QtWidgets.QLabel(self.groupBox)
-        self.label.setGeometry(QtCore.QRect(0, 110, 241, 251))
-        self.label.setStyleSheet("background: rgb(255,255,255)")
+        self.scrollArea = QtWidgets.QScrollArea(self.centralwidget)
+        self.scrollArea.setGeometry(QtCore.QRect(350, 10, 701, 581))
+        self.scrollArea.setStyleSheet("background-color: rgb(0, 0, 0);")
+        self.scrollArea.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOn)
+        self.scrollArea.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOn)
+        self.scrollArea.setWidgetResizable(True)
+        self.scrollArea.setObjectName("scrollArea")
+        self.scrollAreaWidgetContents = QtWidgets.QWidget()
+        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 1218, 618))
+        self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
+        self.verticalLayout = QtWidgets.QVBoxLayout(self.scrollAreaWidgetContents)
+        self.verticalLayout.setObjectName("verticalLayout")
+        self.frame = QtWidgets.QFrame(self.scrollAreaWidgetContents)
+        self.frame.setMinimumSize(QtCore.QSize(1200, 600))
+        self.frame.setStyleSheet("background-color: rgb(170, 255, 0);")
+        self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame.setObjectName("frame")
+        self.label = QtWidgets.QLabel(self.frame)
+        self.label.setGeometry(QtCore.QRect(30, 30, 421, 451))
+        self.label.setStyleSheet("background-color: rgb(255, 255, 0);")
         self.label.setObjectName("label")
+        self.verticalLayout.addWidget(self.frame)
+        self.scrollArea.setWidget(self.scrollAreaWidgetContents)
         self.MainBackground.raise_()
         self.OpacityBackground_2.raise_()
         self.OpacityBackground.raise_()
         self.pushButton.raise_()
-        self.groupBox.raise_()
+        self.scrollArea.raise_()
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
@@ -70,9 +86,7 @@ class Ui_MainWindow(object):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "АйтекИнфо"))
         self.pushButton.setText(_translate("MainWindow", "PushButton"))
-        self.label.setText(_translate("MainWindow", "ТЕСТОВАЯ"))
-
-
+        self.label.setText(_translate("MainWindow", "TextLabel"))
 
 if __name__ == "__main__":
     import sys
