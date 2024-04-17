@@ -346,40 +346,33 @@ class Ui_MainWindow(object):
         self.change_wallpaper.setText(_translate("MainWindow", "Изменение обоев рабочего стола"))
         
         self.check_networkClicked()
-        self.stable_repoClicked()
         
-    def stable_repoClicked(self):
-        # Открываем файл для чтения и записи
-        with open('../roles/network_and_domain/vars/main.yml', 'r+') as file:
-        # Считываем все строки из файла
-            lines = file.readlines()
-        # Переменная, которая указывает, была ли найдена строка для замены
-            found = False
-        # Проходим по каждой строке
-            for i, line in enumerate(lines):
-            # Если строка содержит 'change_stable_repositories: false' и флажок установлен
-                if 'change_stable_repositories: false' in line and self.stable_repo.isChecked():
-                # Меняем строку на 'change_stable_repositories: true'
-                    lines[i] = 'change_stable_repositories: true\n'
-                # Устанавливаем флаг, что строка была найдена
-                    found = True
-            # Если строка содержит 'change_stable_repositories: true' и флажок снят
-                elif 'change_stable_repositories: true' in line and not self.stable_repo.isChecked():
-                # Меняем строку на 'change_stable_repositories: false'
-                    lines[i] = 'change_stable_repositories: false\n'
-                # Устанавливаем флаг, что строка была найдена
-                    found = True
-        # Если строка была найдена и изменена
-            if found:
-            # Возвращаем указатель файла в начало
-                file.seek(0)
-            # Записываем измененные строки обратно в файл
-                file.writelines(lines)
-            # Обрезаем файл до текущей позиции, чтобы удалить оставшиеся старые данные
-                file.truncate()
-
-   
+        self.stable_repo.clicked.connect(self.toggle_stable_repo)
+        
         self.check_network.clicked.connect(self.check_networkClicked)
+
+
+    def toggle_stable_repo(self):
+    # Проверяем состояние чекбокса
+        if self.stable_repo.isChecked():
+        # Если чекбокс активен, изменяем строку на true
+            self.update_file_line('change_stable_repositories: true')
+        else:
+        # Если чекбокс не активен, изменяем строку на false
+            self.update_file_line('change_stable_repositories: false')
+
+    def update_file_line(self, new_line):
+    # Открываем файл для чтения и записи
+        with fileinput.FileInput('your_file.txt', inplace=True) as file:
+        # Читаем файл построчно
+            for line in file:
+            # Заменяем строку, если она соответствует заданной
+                if 'change_stable_repositories:' in line:
+                    print(new_line)
+                else:
+                # Выводим остальные строки без изменений
+                    print(line, end='')        
+
     def check_networkClicked(self):
         if self.check_network.isChecked():
              self.DNS.setEnabled(True)
