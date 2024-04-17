@@ -347,32 +347,47 @@ class Ui_MainWindow(object):
         
         self.check_networkClicked()
         
+        #### STABLE репозитории
         self.stable_repo.clicked.connect(self.toggle_stable_repo)
         
+        ##### FROZEN репозитории
+        self.stable_frozen.clicked.connect(self.toggle_frozen_repo)
+        
+        #### Сетевая настройка
         self.check_network.clicked.connect(self.check_networkClicked)
 
 
     def toggle_stable_repo(self):
-    # Проверяем состояние чекбокса
         if self.stable_repo.isChecked():
-        # Если чекбокс активен, изменяем строку на true
-            self.update_file_line('change_stable_repositories: true')
+            self.update_file_line_stable_repo('change_stable_repositories: true')
         else:
-        # Если чекбокс не активен, изменяем строку на false
-            self.update_file_line('change_stable_repositories: false')
+            self.update_file_line_stable_repo('change_stable_repositories: false')
 
-    def update_file_line(self, new_line):
-    # Открываем файл для чтения и записи
-        with fileinput.FileInput('your_file.txt', inplace=True) as file:
-        # Читаем файл построчно
+    def update_file_line_stable_repo(self, new_line):
+        with fileinput.FileInput('../roles/network_and_domain/vars/main.yml', inplace=True) as file:
             for line in file:
-            # Заменяем строку, если она соответствует заданной
                 if 'change_stable_repositories:' in line:
                     print(new_line)
                 else:
-                # Выводим остальные строки без изменений
-                    print(line, end='')        
+                    print(line, end='')
+    
+    ##### ФУНКЦИЯ FROZEN репозитории #####
+    ######################################
+    def toggle_frozen_repo(self):
+        if self.frozen_repo.isChecked():
+            self.update_file_line_frozen_repo('change_frozen_repositories: true')
+        else:
+            self.update_file_line_frozen_repo('change_frozen_repositories: false')
 
+    def update_file_line_frozen_repo(self, new_line):
+        with fileinput.FileInput('../roles/network_and_domain/vars/main.yml', inplace=True) as file:
+            for line in file:
+                if 'change_frozen_repositories:' in line:
+                    print(new_line)
+                else:
+                    print(line, end='')
+    
+            
     def check_networkClicked(self):
         if self.check_network.isChecked():
              self.DNS.setEnabled(True)
