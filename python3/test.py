@@ -355,8 +355,10 @@ class Ui_MainWindow(object):
         
         #### Сетевая настройка
         self.check_network.clicked.connect(self.check_networkClicked)
-
-
+        
+    
+    ##### ФУНКЦИЯ STABLE репозитории #####
+    ######################################
     def toggle_stable_repo(self):
         if self.stable_repo.isChecked():
             self.update_file_line_stable_repo('change_stable_repositories: true')
