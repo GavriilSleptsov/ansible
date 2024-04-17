@@ -51,7 +51,7 @@
   when: change_domain
 
 - name: Присоединение к домену {{ domain_name }} 
-  command: astra-ad-sssd-client -d {{ domain_name }} -u {{ domain_admin }} -p {{ domain_admin_password }} -y
+  command: astra-ad-sssd-client -d {{ domain_search }} -u {{ domain_admin }} -p {{ domain_admin_password }} -y
   register: domain_join_result
   when: change_domain
 
@@ -79,6 +79,7 @@
   get_url:
     url: https://slepsov.ru/aitekinfo/wallpapers/wallpaper1.jpg
     dest: /opt/aitekinfo/wallpapers/wallpaper1.jpg
+  when: change_wallpaper
 
 - name: Изменение обоев рабочего стола
   lineinfile:
