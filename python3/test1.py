@@ -376,6 +376,18 @@ class Ui_MainWindow(object):
         ##### Сетевая настройка #####
         self.check_network.clicked.connect(self.toggle_change_network)
         
+        ##### Изменение hostname хоста #####
+        self.change_hostname.clicked.connect(self.toggle_change_hostname)
+        
+        ##### Присоединение к домену #####
+        self.change_domain.clicked.connect(self.toggle_change_domain)
+        
+        ##### Изменение обоев рабочего стола #####
+        self.change_wallpaper.clicked.connect(self.toggle_change_wallpaper)
+        
+        ##### Изменение обоев при входе #####
+        self.change_wallpaper_background.clicked.connect(self.toggle_change_wallpaper_background)
+        
         ##### Сетевая настройка #####
         self.check_network.clicked.connect(self.check_networkClicked)
         
@@ -384,6 +396,7 @@ class Ui_MainWindow(object):
         
         ##### Изменение hostname хоста #####
         self.change_hostname.clicked.connect(self.check_hostnameClicked)
+        
         
         
 
@@ -419,8 +432,8 @@ class Ui_MainWindow(object):
                 else:
                     print(line, end='')
     
-    ##### Сетевая настройка #####
-    #############################
+    ##### Сетевая настройка хоста #####
+    ###################################
     def toggle_change_network(self):
         if self.check_network.isChecked():
             self.update_file_line_check_network('change_network: true')
@@ -435,6 +448,69 @@ class Ui_MainWindow(object):
                 else:
                     print(line, end='')
     
+    ##### Изменение hostname хоста #####
+    ####################################
+    def toggle_change_hostname(self):
+        if self.change_hostname.isChecked():
+            self.update_file_line_change_hostname('change_hostname: true')
+        else:
+            self.update_file_line_change_hostname('change_hostname: false')
+
+    def update_file_line_change_hostname(self, new_line):
+        with fileinput.FileInput('../roles/network_and_domain/vars/main.yml', inplace=True) as file:
+            for line in file:
+                if 'change_hostname:' in line:
+                    print(new_line)
+                else:
+                    print(line, end='')
+                    
+    ##### Присоединение к домену ######
+    ###################################
+    def toggle_change_domain(self):
+        if self.toggle_change_domain.isChecked():
+            self.update_file_line_change_domain('change_domain: true')
+        else:
+            self.update_file_line_change_domain('change_domain: false')
+
+    def update_file_line_change_domain(self, new_line):
+        with fileinput.FileInput('../roles/network_and_domain/vars/main.yml', inplace=True) as file:
+            for line in file:
+                if 'change_domain:' in line:
+                    print(new_line)
+                else:
+                    print(line, end='')
+    
+    ##### Изменение обоев рабочего стола ######
+    ###########################################
+    def toggle_change_wallpaper(self):
+        if self.toggle_change_wallpaper.isChecked():
+            self.update_file_line_change_wallpaper('change_wallpaper: true')
+        else:
+            self.update_file_line_change_wallpaper('change_wallpaper: false')
+
+    def update_file_line_change_wallpaper(self, new_line):
+        with fileinput.FileInput('../roles/network_and_domain/vars/main.yml', inplace=True) as file:
+            for line in file:
+                if 'change_wallpaper:' in line:
+                    print(new_line)
+                else:
+                    print(line, end='')
+                    
+    ##### Изменение обоев при входе #####
+    #####################################
+    def toggle_change_wallpaper_background(self):
+        if self.toggle_change_wallpaper_background.isChecked():
+            self.update_file_line_change_wallpaper_background('change_wallpaper_background: true')
+        else:
+            self.update_file_line_change_wallpaper_background('change_wallpaper_background: false')
+
+    def update_file_line_change_wallpaper_background(self, new_line):
+        with fileinput.FileInput('../roles/network_and_domain/vars/main.yml', inplace=True) as file:
+            for line in file:
+                if 'change_wallpaper_background:' in line:
+                    print(new_line)
+                else:
+                    print(line, end='')
     
     ##### Функции проверяюих кнопок #####
     #####################################
