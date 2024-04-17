@@ -519,6 +519,12 @@ p, li { white-space: pre-wrap; }
          <property name="text">
           <string>Сетевая настройка хоста</string>
          </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="checked">
+          <bool>false</bool>
+         </property>
         </widget>
         <widget class="QCheckBox" name="stable_repo">
          <property name="geometry">
@@ -658,6 +664,34 @@ p, li { white-space: pre-wrap; }
          </property>
          <property name="text">
           <string>Изменение обоев рабочего стола</string>
+         </property>
+        </widget>
+        <widget class="QCheckBox" name="change_wallpaper_background">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>285</y>
+           <width>251</width>
+           <height>17</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>8</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="cursor">
+          <cursorShape>PointingHandCursor</cursorShape>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QCheckBox#change_wallpaper_background {
+	color: #fff;
+}</string>
+         </property>
+         <property name="text">
+          <string>Изменение обоев при входе</string>
          </property>
         </widget>
        </widget>

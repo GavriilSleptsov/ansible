@@ -17,7 +17,7 @@ class Ui_MainWindow(object):
         MainWindow.resize(1012, 599)
         MainWindow.setCursor(QtGui.QCursor(QtCore.Qt.IBeamCursor))
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("./logo_window_icon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap(".\\logo_window_icon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         MainWindow.setWindowIcon(icon)
         MainWindow.setStyleSheet("")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
@@ -232,6 +232,8 @@ class Ui_MainWindow(object):
         self.check_network.setStyleSheet("QCheckBox#check_network {\n"
 "    color: #fff;\n"
 "}")
+        self.check_network.setCheckable(True)
+        self.check_network.setChecked(False)
         self.check_network.setObjectName("check_network")
         self.stable_repo = QtWidgets.QCheckBox(self.Ansible_network_and_domain)
         self.stable_repo.setGeometry(QtCore.QRect(20, 160, 251, 17))
@@ -293,6 +295,18 @@ class Ui_MainWindow(object):
 "    color: #fff;\n"
 "}")
         self.change_wallpaper.setObjectName("change_wallpaper")
+        self.change_wallpaper_background = QtWidgets.QCheckBox(self.Ansible_network_and_domain)
+        self.change_wallpaper_background.setGeometry(QtCore.QRect(20, 285, 251, 17))
+        font = QtGui.QFont()
+        font.setPointSize(8)
+        font.setBold(True)
+        font.setWeight(75)
+        self.change_wallpaper_background.setFont(font)
+        self.change_wallpaper_background.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.change_wallpaper_background.setStyleSheet("QCheckBox#change_wallpaper_background {\n"
+"    color: #fff;\n"
+"}")
+        self.change_wallpaper_background.setObjectName("change_wallpaper_background")
         self.verticalLayout.addWidget(self.Ansible_network_and_domain)
         self.Ansible_network_folders = QtWidgets.QFrame(self.AnsibleContent)
         self.Ansible_network_folders.setStyleSheet("background: rgba(255,255,255,0.2);\n"
@@ -344,23 +358,35 @@ class Ui_MainWindow(object):
         self.change_hostname.setText(_translate("MainWindow", "Изменение hostname хоста"))
         self.change_domain.setText(_translate("MainWindow", "Присоединение к домену"))
         self.change_wallpaper.setText(_translate("MainWindow", "Изменение обоев рабочего стола"))
+        self.change_wallpaper_background.setText(_translate("MainWindow", "Изменение обоев при входе"))
+
         
         ##### Нажимаются при запуске программы #####
-        ##############################
+        ############################################
         self.check_networkClicked()
         self.check_hostnameClicked()
         self.check_domainClicked()
         
-        #### STABLE репозитории
+        #### STABLE репозитории #####
         self.stable_repo.clicked.connect(self.toggle_stable_repo)
         
-        ##### FROZEN репозитории
+        ##### FROZEN репозитории #####
         self.frozen_repo.clicked.connect(self.toggle_frozen_repo)
         
-        #### Сетевая настройка
+        ##### Сетевая настройка #####
+        self.check_network.clicked.connect(self.toggle_change_network)
+        
+        ##### Сетевая настройка #####
         self.check_network.clicked.connect(self.check_networkClicked)
         
-    
+        ##### Присоединение к домену #####
+        self.change_domain.clicked.connect(self.check_domainClicked)
+        
+        ##### Изменение hostname хоста #####
+        self.change_hostname.clicked.connect(self.check_hostnameClicked)
+        
+        
+
     ##### ФУНКЦИЯ STABLE репозитории #####
     ######################################
     def toggle_stable_repo(self):
@@ -393,8 +419,26 @@ class Ui_MainWindow(object):
                 else:
                     print(line, end='')
     
+    ##### Сетевая настройка #####
+    #############################
+    def toggle_change_network(self):
+        if self.check_network.isChecked():
+            self.update_file_line_check_network('change_network: true')
+        else:
+            self.update_file_line_check_network('change_network: false')
+
+    def update_file_line_check_network(self, new_line):
+        with fileinput.FileInput('../roles/network_and_domain/vars/main.yml', inplace=True) as file:
+            for line in file:
+                if 'change_network:' in line:
+                    print(new_line)
+                else:
+                    print(line, end='')
+    
+    
     ##### Функции проверяюих кнопок #####
     #####################################
+    ##### Сетевая настройка #####
     def check_networkClicked(self):
         if self.check_network.isChecked():
             self.DNS.setEnabled(True)
@@ -406,18 +450,25 @@ class Ui_MainWindow(object):
             self.IP.setEnabled(False)
             self.Netmask.setEnabled(False)
             self.Gateway.setEnabled(False)
-             
+            
+    ##### Изменение hostname хоста #####
     def check_hostnameClicked(self):
         if self.change_hostname.isChecked():
             self.Hostname.setEnabled(True)
         else:
             self.Hostname.setEnabled(False)
-            
+    
+    ##### Присоединение к домену #####
     def check_domainClicked(self):
         if self.change_domain.isChecked():
             self.SearchDomain.setEnabled(True)
+            self.PasswordAdmin.setEnabled(True)
+            self.LoginAdmin.setEnabled(True)
         else:
             self.SearchDomain.setEnabled(False)
+            self.PasswordAdmin.setEnabled(False)
+            self.LoginAdmin.setEnabled(False)
+
 
 if __name__ == "__main__":
     import sys
