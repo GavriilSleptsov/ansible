@@ -349,26 +349,23 @@ class Ui_MainWindow(object):
         self.stable_repoClicked()
         
     def stable_repoClicked(self):
-    # Получаем состояние флажка
         checked = self.stable_repo.isChecked()
-        with fileinput.FileInput('../roles/network_and_domain/vars/main.yml', inplace=True) as file:
-            for line in file:
-            # Заменяем строку, если она соответствует условию
-                if 'change_stable_repositories: false' in line:
-                # Меняем строку на "true", если флажок нажат
-                    if checked:
-                        print('change_stable_repositories: true')
-                    else:
-                        print(line.strip())
-                elif 'change_stable_repositories: true' in line:
-                # Меняем строку на "false", если флажок не нажат
-                    if not checked:
-                        print('change_stable_repositories: false')
-                    else:
-                        print(line.strip())
-                else:
-                 # В остальных случаях просто печатаем строку без изменений
-                    print(line.strip())
+    # Открываем файл на чтение
+        with open('../roles/network_and_domain/vars/main.yml', 'r') as file:
+            lines = file.readlines()
+
+    # Изменяем нужные строки
+        for i, line in enumerate(lines):
+            if 'change_stable_repositories: false' in line:
+                if checked:
+                    lines[i] = 'change_stable_repositories: true\n'
+            elif 'change_stable_repositories: true' in line:
+                if not checked:
+                    lines[i] = 'change_stable_repositories: false\n'
+
+    # Записываем изменения обратно в файл
+        with open('../roles/network_and_domain/vars/main.yml', 'w') as file:
+            file.writelines(lines)
    
         self.check_network.clicked.connect(self.check_networkClicked)
     def check_networkClicked(self):
