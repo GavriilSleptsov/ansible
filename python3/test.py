@@ -349,23 +349,35 @@ class Ui_MainWindow(object):
         self.stable_repoClicked()
         
     def stable_repoClicked(self):
-        checked = self.stable_repo.isChecked()
-    # Открываем файл на чтение
-        with open('../roles/network_and_domain/vars/main.yml', 'r') as file:
+        # Открываем файл для чтения и записи
+        with open('../roles/network_and_domain/vars/main.yml', 'r+') as file:
+        # Считываем все строки из файла
             lines = file.readlines()
-
-    # Изменяем нужные строки
-        for i, line in enumerate(lines):
-            if 'change_stable_repositories: false' in line:
-                if checked:
+        # Переменная, которая указывает, была ли найдена строка для замены
+            found = False
+        # Проходим по каждой строке
+            for i, line in enumerate(lines):
+            # Если строка содержит 'change_stable_repositories: false' и флажок установлен
+                if 'change_stable_repositories: false' in line and self.stable_repo.isChecked():
+                # Меняем строку на 'change_stable_repositories: true'
                     lines[i] = 'change_stable_repositories: true\n'
-            elif 'change_stable_repositories: true' in line:
-                if not checked:
+                # Устанавливаем флаг, что строка была найдена
+                    found = True
+            # Если строка содержит 'change_stable_repositories: true' и флажок снят
+                elif 'change_stable_repositories: true' in line and not self.stable_repo.isChecked():
+                # Меняем строку на 'change_stable_repositories: false'
                     lines[i] = 'change_stable_repositories: false\n'
+                # Устанавливаем флаг, что строка была найдена
+                    found = True
+        # Если строка была найдена и изменена
+            if found:
+            # Возвращаем указатель файла в начало
+                file.seek(0)
+            # Записываем измененные строки обратно в файл
+                file.writelines(lines)
+            # Обрезаем файл до текущей позиции, чтобы удалить оставшиеся старые данные
+                file.truncate()
 
-    # Записываем изменения обратно в файл
-        with open('../roles/network_and_domain/vars/main.yml', 'w') as file:
-            file.writelines(lines)
    
         self.check_network.clicked.connect(self.check_networkClicked)
     def check_networkClicked(self):
