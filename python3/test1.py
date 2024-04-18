@@ -367,6 +367,11 @@ class Ui_MainWindow(object):
         self.check_hostnameClicked()
         self.check_domainClicked()
         
+        ##### ВАЛИДАТОРЫ #####
+        ip_validator = QtGui.QRegExpValidator(QtCore.QRegExp("[0-9.]*"))
+        self.IP.setValidator(ip_validator)
+        self.IP.textChanged.connect(self.update_ip_in_file)
+        
         #### STABLE репозитории #####
         self.stable_repo.clicked.connect(self.toggle_stable_repo)
         
@@ -397,9 +402,6 @@ class Ui_MainWindow(object):
         ##### Изменение hostname хоста #####
         self.change_hostname.clicked.connect(self.check_hostnameClicked)
         
-        
-        
-
     ##### ФУНКЦИЯ STABLE репозитории #####
     ######################################
     def toggle_stable_repo(self):
