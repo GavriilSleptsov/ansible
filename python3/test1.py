@@ -372,6 +372,10 @@ class Ui_MainWindow(object):
         self.IP.setValidator(ip_validator)
         self.IP.textChanged.connect(self.update_ip_in_file)
         
+        dns_validator = QtGui.QRegExpValidator(QtCore.QRegExp("[0-9.]*"))
+        self.DNS.setValidator(dns_validator)
+        self.DNS.textChanged.connect(self.update_dns_in_file)
+        
         #### STABLE репозитории #####
         self.stable_repo.clicked.connect(self.toggle_stable_repo)
         
@@ -547,6 +551,7 @@ class Ui_MainWindow(object):
             self.PasswordAdmin.setEnabled(False)
             self.LoginAdmin.setEnabled(False)
     
+    ##### ОБНОВЛЕНИЕ СТРОКИ IP #####
     def update_ip_in_file(self, ip):
         file_path = "../roles/network_and_domain/vars/main.yml"
         ip_line = "ip4: "
@@ -557,10 +562,26 @@ class Ui_MainWindow(object):
                     print(updated_line, end='')
                 else:
                     print(line, end='')
-
+                    
     def IP(self):
-        ip = self.IP.text()  # Получаем введенный IP-адрес из QLineEdit
-        self.update_ip_in_file(ip)  # Вызываем метод для обновления файла с IP-адресом
+        ip = self.IP.text()
+        self.update_ip_in_file(ip)
+
+    ##### ОБНОВЛЕНИЕ СТРОКИ DNS #####
+    def update_dns_in_file(self, dns):
+        file_path = "../roles/network_and_domain/vars/main.yml"
+        ip_line = "dns: "
+        with fileinput.FileInput(file_path, inplace=True) as file:
+            for line in file:
+                if ip_line in line:
+                    updated_line = ip_line + '"' + dns + '"\n'
+                    print(updated_line, end='')
+                else:
+                    print(line, end='')
+                    
+    def DNS(self):
+        dns = self.DNS.text()
+        self.update_ip_in_file(dns)
 
 if __name__ == "__main__":
     import sys
