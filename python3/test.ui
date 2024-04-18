@@ -694,10 +694,10 @@ QFrame &gt; QLineEdit {
           </property>
          </widget>
         </widget>
-        <widget class="QPushButton" name="pushButton">
+        <widget class="QPushButton" name="go_ansible">
          <property name="geometry">
           <rect>
-           <x>270</x>
+           <x>250</x>
            <y>180</y>
            <width>111</width>
            <height>23</height>
