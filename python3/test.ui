@@ -707,7 +707,7 @@ QFrame &gt; QLineEdit {
           <string notr="true">background: red;</string>
          </property>
          <property name="text">
-          <string>PushButton</string>
+          <string>Запустить ansible</string>
          </property>
         </widget>
        </widget>

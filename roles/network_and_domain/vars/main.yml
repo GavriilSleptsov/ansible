@@ -1,12 +1,12 @@
 ##################################
-ip4: "123123"
-netmask: "123123"
-gateway: "123123"
-dns: "123123123"
-domain_search: "123123"
-domain_admin: "3123123"
-domain_admin_password: "1212312312312"
-new_hostname: "12312"
+ip4: "1312"
+netmask: "312312312"
+gateway: "312312"
+dns: "312313123"
+domain_search: "1231"
+domain_admin: "312312"
+domain_admin_password: "3123123123123"
+new_hostname: "12312312"
 
 ##################################
 change_stable_repositories: true
