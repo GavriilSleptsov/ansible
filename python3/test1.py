@@ -467,7 +467,7 @@ class Ui_MainWindow(object):
     ##### Присоединение к домену ######
     ###################################
     def toggle_change_domain(self):
-        if self.toggle_change_domain.isChecked():
+        if self.change_domain.isChecked():
             self.update_file_line_change_domain('change_domain: true')
         else:
             self.update_file_line_change_domain('change_domain: false')
@@ -483,7 +483,7 @@ class Ui_MainWindow(object):
     ##### Изменение обоев рабочего стола ######
     ###########################################
     def toggle_change_wallpaper(self):
-        if self.toggle_change_wallpaper.isChecked():
+        if self.change_wallpaper.isChecked():
             self.update_file_line_change_wallpaper('change_wallpaper: true')
         else:
             self.update_file_line_change_wallpaper('change_wallpaper: false')
@@ -499,7 +499,7 @@ class Ui_MainWindow(object):
     ##### Изменение обоев при входе #####
     #####################################
     def toggle_change_wallpaper_background(self):
-        if self.toggle_change_wallpaper_background.isChecked():
+        if self.change_wallpaper_background.isChecked():
             self.update_file_line_change_wallpaper_background('change_wallpaper_background: true')
         else:
             self.update_file_line_change_wallpaper_background('change_wallpaper_background: false')
@@ -544,7 +544,21 @@ class Ui_MainWindow(object):
             self.SearchDomain.setEnabled(False)
             self.PasswordAdmin.setEnabled(False)
             self.LoginAdmin.setEnabled(False)
+    
+    def update_ip_in_file(self, ip):
+        file_path = "../roles/network_and_domain/vars/main.yml"
+        ip_line = "ip4: "
+        with fileinput.FileInput(file_path, inplace=True) as file:
+            for line in file:
+                if ip_line in line:
+                    updated_line = ip_line + '"' + ip + '"\n'
+                    print(updated_line, end='')
+                else:
+                    print(line, end='')
 
+    def IP(self):
+        ip = self.IP.text()  # Получаем введенный IP-адрес из QLineEdit
+        self.update_ip_in_file(ip)  # Вызываем метод для обновления файла с IP-адресом
 
 if __name__ == "__main__":
     import sys
