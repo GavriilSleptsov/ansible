@@ -363,7 +363,10 @@ class Ui_MainWindow(object):
         self.LoginAdmin.setPlaceholderText(_translate("MainWindow", "Логин доменного админа"))
         self.PasswordAdmin.setPlaceholderText(_translate("MainWindow", "Пароль доменного админа"))
         self.network_and_domain_frame_title.setText(_translate("MainWindow", "Введите данные"))
-        self.pushButton.setText(_translate("MainWindow", "PushButton"))
+        self.pushButton = QtWidgets.QPushButton(self.centralwidget)
+        self.pushButton.setGeometry(QtCore.QRect(300, 200, 200, 50))
+        self.pushButton.setObjectName("pushButton")
+        self.pushButton.setText("PushButton")
         
         
         self.pushButton.clicked.connect(self.on_pushButton_clicked)
