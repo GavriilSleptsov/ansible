@@ -1,16 +1,16 @@
 ##################################
-ip4: "10.0.117.220"
-netmask: "24"
-gateway: "10.0.117.1"
-dns: "10.0.117.110"
-domain_search: "slepsov.corp"
-domain_admin: "admin"
-domain_admin_password: "P@ssw0rd"
-new_hostname: "wrka"
+ip4: "123"
+netmask: "123"
+gateway: "123"
+dns: "123"
+domain_search: "asd"
+domain_admin: "asd"
+domain_admin_password: "asd"
+new_hostname: "asd"
 
 ##################################
-change_stable_repositories: false
-change_frozen_repositories: false
+change_stable_repositories: true
+change_frozen_repositories: true
 change_network: true
 change_hostname: true
 change_domain: true
