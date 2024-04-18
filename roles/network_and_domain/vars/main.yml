@@ -3,10 +3,10 @@ ip4: "123123"
 netmask: "123123"
 gateway: "123123"
 dns: "123123123"
-domain_search: "asdasd"
-domain_admin: "asdsad"
-domain_admin_password: "asdas"
-new_hostname: "123asdasd"
+domain_search: "123123"
+domain_admin: "3123123"
+domain_admin_password: "1212312312312"
+new_hostname: "12312"
 
 ##################################
 change_stable_repositories: true
